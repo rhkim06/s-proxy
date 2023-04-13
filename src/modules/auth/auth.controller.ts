@@ -18,17 +18,17 @@ export class AuthController {
   constructor(private readonly authService: AuthService) {}
   @HttpCode(HttpStatus.OK)
   @Post('login')
-  signIn(@Body() signInDto: SignInDto) {
-    return this.authService.signIn(signInDto.name, signInDto.password)
-  }
-  @Get()
-  getToken(@Response() res) {
-    return this.authService.getToken(res)
+  signIn(@Body() signInDto: SignInDto, @Response() res) {
+    return this.authService.signIn(signInDto.name, signInDto.password, res)
   }
 
   @UseGuards(TokenGuardTsGuard)
-  @Get('profile')
-  getProfile(@Request() req) {
-    return req.user
+  @HttpCode(HttpStatus.OK)
+  @Get('check-token')
+  checkToken(@Request() req) {
+    return {
+      data: req.user,
+      message: 'token verified',
+    }
   }
 }
