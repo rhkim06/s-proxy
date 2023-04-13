@@ -15,7 +15,7 @@ import { IpModule } from './modules/ip/ip.module'
       host: 'localhost',
       port: 3306,
       username: 'root',
-      password: 'Fbgid~8867',
+      password: 'root',
       database: 's-proxy',
       entities: [User],
       synchronize: true,
