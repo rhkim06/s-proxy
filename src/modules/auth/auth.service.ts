@@ -13,20 +13,25 @@ export class AuthService {
 
     if (user?.password !== pass) {
       throw new UnauthorizedException()
+    } else {
+      const payload = { id: user.id }
+      const access_token = await this.jwtService.signAsync(payload, {
+        secret: 'abcabc',
+      })
+      const token = `Bearer ${access_token}`
+      res.setHeader('authorization', token)
+      res.send({
+        codeStatus: HttpStatus.OK,
+        message: '登陆成功',
+        data: {
+          id: user.id,
+        },
+      })
     }
-
-    const payload = { name: user.name, pwd: user.password }
-    const access_token = await this.jwtService.signAsync(payload)
-    const token = `Bearer ${access_token}`
-    res.setHeader('token', token)
-    res.send({
-      codeStatus: HttpStatus.OK,
-      message: '登陆成功',
-      token,
-    })
   }
-  testToken(req) {
-    const token = req.headers.token
-    return this.jwtService.verify(token)
+  getUserIdByName(token: string) {
+    const _token = token.split('Bearer ')[1]
+    const res = this.jwtService.verify(_token)
+    return this.usersService.findOneByName(res.name)
   }
 }

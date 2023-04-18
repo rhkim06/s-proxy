@@ -9,6 +9,7 @@ import {
   Response,
   UseGuards,
 } from '@nestjs/common'
+import { userInfo } from 'os'
 import { TokenGuardTsGuard } from 'src/guard/token.guard.ts/token.guard.ts.guard'
 import { AuthService } from './auth.service'
 import { SignInDto } from './dto/sign-in.dto'
@@ -27,7 +28,11 @@ export class AuthController {
   @Get('check-token')
   checkToken(@Request() req) {
     return {
-      data: req.user,
+      data: {
+        user: {
+          id: req.user,
+        },
+      },
       message: 'token verified',
     }
   }

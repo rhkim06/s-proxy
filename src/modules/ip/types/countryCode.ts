@@ -1,1 +1,1 @@
-export type CountryCode = 'us' | 'kr' | 'jp'
+export type CountryCode = 'us' | 'kr' | 'jp' | 'in'
