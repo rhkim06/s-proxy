@@ -7,7 +7,7 @@ async function bootstrap() {
     allowedHeaders: ['content-type', 'authorization'],
     exposedHeaders: ['authorization'],
     methods: ['GET', 'POST', 'DELETE', 'PATCH'],
-    origin: 'http://45.76.231.188:80',
+    origin: '*',
     credentials: true,
   })
   await app.listen(4001)
