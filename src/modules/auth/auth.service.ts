@@ -8,9 +8,8 @@ export class AuthService {
     private readonly jwtService: JwtService,
     private usersService: UsersService,
   ) {}
-  async signIn(name: string, pass: string, res): Promise<any> {
-    const user = await this.usersService.findOneByName(name)
-
+  async signIn(id: string, pass: string, res): Promise<any> {
+    const user = await this.usersService.findOneByName(id)
     if (user?.password !== pass) {
       throw new UnauthorizedException()
     } else {

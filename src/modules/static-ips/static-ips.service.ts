@@ -106,14 +106,14 @@ export class StaticIpsService {
       .getRepository(StaticIp)
       .createQueryBuilder('sip')
       .orderBy('sip.create_time', 'DESC')
-      // .where('sip.userId = :userId', { userId: id })
+      .where('sip.userId = :userId', { userId: id })
       .offset(offset * 10)
       .execute()
     const total = await this.dataSource
       .getRepository(StaticIp)
       .createQueryBuilder('sip')
       .orderBy('sip.create_time', 'DESC')
-      // .where('sip.userId = :userId', { userId: id })
+      .where('sip.userId = :userId', { userId: id })
       .getCount()
     return { res, total }
   }
