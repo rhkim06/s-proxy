@@ -24,7 +24,7 @@ export class IpController {
   @HttpCode(HttpStatus.OK)
   @Post('change')
   change(@Body() updateIpDto: UpdateIpDto) {
-    return this.ipService.change(updateIpDto.countryCode)
+    return this.ipService.change(updateIpDto.countryCode, updateIpDto.proxyId)
   }
 
   @Get(':id')

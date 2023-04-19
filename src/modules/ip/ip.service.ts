@@ -16,11 +16,11 @@ export class IpService {
   findAll() {
     return `This action returns all ip`
   }
-  async change(countryCode: CountryCode) {
+  async change(countryCode: CountryCode, proxyId: string) {
     const { data } = await firstValueFrom(
       this.httpService
         .get(
-          `http://refresh.rola.info/refresh?user=song52gid_1&country=${countryCode}&state=&city=`,
+          `http://refresh.rola.info/refresh?user=${proxyId}&country=${countryCode}&state=&city=`,
         )
         .pipe(
           catchError((error: AxiosError) => {

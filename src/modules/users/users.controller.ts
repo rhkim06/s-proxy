@@ -29,6 +29,11 @@ export class UsersController {
   findOne(@Param('id') id: string) {
     return this.usersService.findOne(+id)
   }
+
+  @Get('dynamic-ip/:id')
+  findOneDynamicIp(@Param('id') id: string) {
+    return this.usersService.findOneDynamicIp(+id)
+  }
   @Post('profile')
   findOneByName(@Body() user: Record<string, any>) {
     return this.usersService.findOneByName(user.name)

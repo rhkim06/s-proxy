@@ -28,7 +28,17 @@ export class UsersService {
   }
 
   findOne(id: number) {
-    const user = this.usersRepository.findOne({ where: { id } })
+    const user = this.usersRepository.findOne({
+      select: ['id', 'name'],
+      where: { id },
+    })
+    return user
+  }
+  findOneDynamicIp(id: number) {
+    const user = this.usersRepository.findOne({
+      select: ['proxyId', 'proxyPwd'],
+      where: { id },
+    })
     return user
   }
   update(id: number, updateUserDto: UpdateUserDto) {
