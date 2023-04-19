@@ -23,7 +23,7 @@ export class StaticIpsController {
 
   @Get('init')
   findAll() {
-    // return this.staticIpsService.init()
+    return this.staticIpsService.init()
   }
 
   @Get(':id')

@@ -51,7 +51,7 @@ export class StaticIp {
   private: boolean
 
   @Column()
-  orderStatus: number
+  status: number
 
   @ManyToOne((type) => User, (user) => user.id)
   user: User
