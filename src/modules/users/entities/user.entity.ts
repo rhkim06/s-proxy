@@ -1,3 +1,4 @@
+import { SmsMan } from 'src/modules/sms-man/entities/sms-man.entity'
 import {
   Column,
   CreateDateColumn,
@@ -25,4 +26,7 @@ export class User {
 
   @Column({ length: 25 })
   proxyPwd: string
+
+  @OneToMany((type) => SmsMan, (smsMan) => smsMan.user)
+  smsMan: SmsMan
 }
