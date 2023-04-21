@@ -47,8 +47,8 @@ export class StaticIpsController {
   //   return this.staticIpsService.update(+id, updateStaticIpDto)
   // }
 
-  // @Delete(':id')
-  // remove(@Param('id') id: string) {
-  //   return this.staticIpsService.remove(+id)
-  // }
+  @Delete(':id')
+  remove(@Param('id') id: string) {
+    return this.staticIpsService.remove(+id)
+  }
 }

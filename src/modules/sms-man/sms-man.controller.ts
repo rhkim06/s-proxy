@@ -39,6 +39,11 @@ export class SmsManController {
     return await this.smsManService.getSmsCode(payload)
   }
 
+  @UseGuards(TokenGuardTsGuard)
+  @Get(':id')
+  async findAllSmsA(@Param('id') id: number) {
+    return await this.smsManService.findAllSmsA(id)
+  }
   // @Get(':id')
   // findOne(@Param('id') id: string) {
   //   return this.smsManService.findOne(+id)

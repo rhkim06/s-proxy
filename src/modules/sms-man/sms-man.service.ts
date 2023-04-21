@@ -35,8 +35,11 @@ export class SmsManService {
     }
   }
 
-  findAll() {
-    return `This action returns all smsMan`
+  findAllSmsA(id: number) {
+    return this.smsManServiceRepository.find({
+      relations: { smsManPrice: true },
+      where: { user: { id } },
+    })
   }
   async getPhoneNumber(payload: any) {
     const { countryId, platformId } = payload
