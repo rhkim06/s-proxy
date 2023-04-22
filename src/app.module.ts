@@ -13,6 +13,8 @@ import { SmsManModule } from './modules/sms-man/sms-man.module'
 import { SmsManPriceModule } from './modules/sms-man-price/sms-man-price.module'
 import { SmsMan } from './modules/sms-man/entities/sms-man.entity'
 import { SmsManPrice } from './modules/sms-man-price/entities/sms-man-price.entity'
+import { WinstonModule } from 'nest-winston'
+import * as winston from 'winston'
 
 @Module({
   imports: [
@@ -26,6 +28,7 @@ import { SmsManPrice } from './modules/sms-man-price/entities/sms-man-price.enti
       entities: [User, StaticIp, SmsMan, SmsManPrice],
       synchronize: true,
     }),
+    WinstonModule.forRoot({}),
     UsersModule,
     AuthModule,
     IpModule,
