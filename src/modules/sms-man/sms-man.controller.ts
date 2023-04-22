@@ -12,7 +12,7 @@ import { SmsManService } from './sms-man.service'
 import { CreateSmsManDto } from './dto/create-sms-man.dto'
 import { UpdateSmsManDto } from './dto/update-sms-man.dto'
 import { TokenGuardTsGuard } from 'src/guard/token.guard.ts/token.guard.ts.guard'
-import { SmsManPriceService } from 'src/sms-man-price/sms-man-price.service'
+import { SmsManPriceService } from 'src/modules/sms-man-price/sms-man-price.service'
 
 @Controller('sms-a')
 export class SmsManController {

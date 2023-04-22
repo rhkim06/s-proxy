@@ -1,5 +1,5 @@
 import { User } from 'src/modules/users/entities/user.entity'
-import { SmsManPrice } from 'src/sms-man-price/entities/sms-man-price.entity'
+import { SmsManPrice } from 'src/modules/sms-man-price/entities/sms-man-price.entity'
 import {
   Column,
   CreateDateColumn,
