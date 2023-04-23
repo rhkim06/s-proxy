@@ -1,3 +1,4 @@
+import { MailServer } from 'src/modules/mail-server/entities/mail-server.entity'
 import { SmsMan } from 'src/modules/sms-man/entities/sms-man.entity'
 import {
   Column,
@@ -29,4 +30,7 @@ export class User {
 
   @OneToMany((type) => SmsMan, (smsMan) => smsMan.user)
   smsMan: SmsMan
+
+  @OneToMany((type) => MailServer, (mailServer) => mailServer.user)
+  mailServer: MailServer
 }

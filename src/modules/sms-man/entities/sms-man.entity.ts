@@ -24,7 +24,7 @@ export class SmsMan {
   @CreateDateColumn()
   create_time: Timestamp
 
-  @ManyToOne((type) => User, (user) => user.smsMan.user)
+  @ManyToOne((type) => User, (user) => user.smsMan)
   user: User
 
   @ManyToOne((type) => SmsManPrice, (smsManPrice) => smsManPrice.smsMan)

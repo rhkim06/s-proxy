@@ -30,15 +30,15 @@ export class IpService {
     )
     return data
   }
-  findOne(id: number) {
-    return `This action returns a #${id} ip`
-  }
+  // findOne(id: number) {
+  //   return `This action returns a #${id} ip`
+  // }
 
-  update(id: number, updateIpDto: UpdateIpDto) {
-    return `This action updates a #${id} ip`
-  }
+  // update(id: number, updateIpDto: UpdateIpDto) {
+  //   return `This action updates a #${id} ip`
+  // }
 
-  remove(id: number) {
-    return `This action removes a #${id} ip`
-  }
+  // remove(id: number) {
+  //   return `This action removes a #${id} ip`
+  // }
 }

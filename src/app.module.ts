@@ -17,6 +17,8 @@ import { WinstonModule } from 'nest-winston'
 import * as winston from 'winston'
 import DailyRotateFile = require('winston-daily-rotate-file')
 import { RequestLoggerMiddleware } from './middleware/request-logger.middleware'
+import { MailServerModule } from './modules/mail-server/mail-server.module'
+import { MailServer } from './modules/mail-server/entities/mail-server.entity'
 const format = winston.format
 const path = require('path')
 @Module({
@@ -28,7 +30,7 @@ const path = require('path')
       username: 'root',
       password: 'Fbgid~8867',
       database: 's-proxy',
-      entities: [User, StaticIp, SmsMan, SmsManPrice],
+      entities: [User, StaticIp, SmsMan, SmsManPrice, MailServer],
       synchronize: true,
     }),
     UsersModule,
@@ -37,6 +39,7 @@ const path = require('path')
     StaticIpsModule,
     SmsManModule,
     SmsManPriceModule,
+    MailServerModule,
   ],
   controllers: [],
   providers: [Logger],
