@@ -37,15 +37,13 @@ export class CreateProfileService {
     }
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} createProfile`
-  }
+  addLastName(name: string) {
+    const names = name.split(' ')
+    names.forEach((item) => {
+      console.log(item)
 
-  update(id: number, updateCreateProfileDto: UpdateCreateProfileDto) {
-    return `This action updates a #${id} createProfile`
-  }
-
-  remove(id: number) {
-    return `This action removes a #${id} createProfile`
+      const name = this.firstNameRepository.create({ first_name: item })
+      this.firstNameRepository.save(name)
+    })
   }
 }

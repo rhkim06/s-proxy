@@ -11,7 +11,6 @@ import {
 import { TokenGuardTsGuard } from 'src/guard/token.guard.ts/token.guard.ts.guard'
 import { CreateProfileService } from './create-profile.service'
 import { CreateCreateProfileDto } from './dto/create-create-profile.dto'
-import { UpdateCreateProfileDto } from './dto/update-create-profile.dto'
 
 @Controller('create-profile')
 export class CreateProfileController {
@@ -27,21 +26,8 @@ export class CreateProfileController {
     return this.createProfileService.findOneProfile()
   }
 
-  @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.createProfileService.findOne(+id)
-  }
-
-  @Patch(':id')
-  update(
-    @Param('id') id: string,
-    @Body() updateCreateProfileDto: UpdateCreateProfileDto,
-  ) {
-    return this.createProfileService.update(+id, updateCreateProfileDto)
-  }
-
-  @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.createProfileService.remove(+id)
+  @Post('add-last-name')
+  addLastName(@Body() payload: any) {
+    return this.createProfileService.addLastName(payload.name)
   }
 }
