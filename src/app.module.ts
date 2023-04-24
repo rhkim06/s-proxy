@@ -19,6 +19,9 @@ import DailyRotateFile = require('winston-daily-rotate-file')
 import { RequestLoggerMiddleware } from './middleware/request-logger.middleware'
 import { MailServerModule } from './modules/mail-server/mail-server.module'
 import { MailServer } from './modules/mail-server/entities/mail-server.entity'
+import { IpCheckService } from './modules/ip-check/ip-check.service'
+import { IpCheckController } from './modules/ip-check/ip-check.controller'
+import { IpCheckModule } from './modules/ip-check/ip-check.module'
 const format = winston.format
 const path = require('path')
 @Module({
@@ -40,6 +43,7 @@ const path = require('path')
     SmsManModule,
     SmsManPriceModule,
     MailServerModule,
+    IpCheckModule,
   ],
   controllers: [],
   providers: [Logger],
