@@ -73,9 +73,9 @@ export const useGetMail = (payload?: any) => {
 
                 //邮件头内容
                 mailparser.on('headers', function (headers) {
-                  console.log(
-                    '邮件头信息>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>',
-                  )
+                  // console.log(
+                  //   '邮件头信息>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>',
+                  // )
                   // console.log('邮件主题: ' + headers.get('subject'))
                   // console.log('发件人: ' + headers.get('from').text)
                   // console.log('收件人: ' + headers.get('to').text)
@@ -105,7 +105,7 @@ export const useGetMail = (payload?: any) => {
               })
 
               msg.once('end', function () {
-                console.log(seqno + '完成')
+                // console.log(seqno + '完成')
               })
             })
 
@@ -113,7 +113,7 @@ export const useGetMail = (payload?: any) => {
               console.log('抓取出现错误: ' + err)
             })
             f.once('end', function () {
-              console.log('所有邮件抓取完成!')
+              // console.log('所有邮件抓取完成!')
               imap.end()
             })
           },
