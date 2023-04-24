@@ -22,6 +22,8 @@ import { MailServer } from './modules/mail-server/entities/mail-server.entity'
 import { IpCheckService } from './modules/ip-check/ip-check.service'
 import { IpCheckController } from './modules/ip-check/ip-check.controller'
 import { IpCheckModule } from './modules/ip-check/ip-check.module'
+import { ImageDownloadModule } from './modules/image-download/image-download.module';
+import { CreateProfileModule } from './modules/create-profile/create-profile.module';
 const format = winston.format
 const path = require('path')
 @Module({
@@ -44,6 +46,8 @@ const path = require('path')
     SmsManPriceModule,
     MailServerModule,
     IpCheckModule,
+    ImageDownloadModule,
+    CreateProfileModule,
   ],
   controllers: [],
   providers: [Logger],

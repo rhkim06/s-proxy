@@ -70,7 +70,6 @@ export const useGetMail = (payload?: any) => {
 
               msg.on('body', async function (stream, info) {
                 stream.pipe(mailparser) //将为解析的数据流pipe到mailparser
-
                 //邮件头内容
                 mailparser.on('headers', function (headers) {
                   // console.log(
