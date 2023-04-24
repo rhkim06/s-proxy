@@ -33,7 +33,7 @@ export class CreateProfileService {
     return {
       code: 200,
       message: 'created name successfully!',
-      data: { name: `${lastName.last_name} ${firstName.first_name}` },
+      data: { name: `${lastName.last_name}${firstName.first_name}` },
     }
   }
 
