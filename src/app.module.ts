@@ -22,8 +22,10 @@ import { MailServer } from './modules/mail-server/entities/mail-server.entity'
 import { IpCheckService } from './modules/ip-check/ip-check.service'
 import { IpCheckController } from './modules/ip-check/ip-check.controller'
 import { IpCheckModule } from './modules/ip-check/ip-check.module'
-import { ImageDownloadModule } from './modules/image-download/image-download.module';
-import { CreateProfileModule } from './modules/create-profile/create-profile.module';
+import { ImageDownloadModule } from './modules/image-download/image-download.module'
+import { CreateProfileModule } from './modules/create-profile/create-profile.module'
+import { FirstName } from './modules/create-profile/entities/first-name.entity'
+import { LastName } from './modules/create-profile/entities/last-name.entity'
 const format = winston.format
 const path = require('path')
 @Module({
@@ -35,7 +37,15 @@ const path = require('path')
       username: 'root',
       password: 'Fbgid~8867',
       database: 's-proxy',
-      entities: [User, StaticIp, SmsMan, SmsManPrice, MailServer],
+      entities: [
+        User,
+        StaticIp,
+        SmsMan,
+        SmsManPrice,
+        MailServer,
+        FirstName,
+        LastName,
+      ],
       synchronize: true,
     }),
     UsersModule,

@@ -22,7 +22,7 @@ export class CreateProfileController {
     return this.createProfileService.create(createCreateProfileDto)
   }
   @UseGuards(TokenGuardTsGuard)
-  @Get()
+  @Get('name')
   findOneProfile() {
     return this.createProfileService.findOneProfile()
   }
