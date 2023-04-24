@@ -2,6 +2,7 @@ import { Injectable } from '@nestjs/common'
 import { InjectRepository } from '@nestjs/typeorm'
 import { getRandomIntInclusive } from 'src/utils/indes'
 import { Repository } from 'typeorm'
+import { LongWithoutOverridesClass } from 'typeorm/driver/mongodb/bson.typings'
 import { CreateCreateProfileDto } from './dto/create-create-profile.dto'
 import { UpdateCreateProfileDto } from './dto/update-create-profile.dto'
 import { FirstName } from './entities/first-name.entity'
@@ -20,20 +21,32 @@ export class CreateProfileService {
   }
 
   async findOneProfile() {
+    let firstName = ''
+    let lastName = ''
     const firstNameCount = await this.firstNameRepository.count()
-    const firstNameRandomId = getRandomIntInclusive(1, firstNameCount)
     const lastNameCount = await this.lastNameRepository.count()
-    const lastNameRandomId = getRandomIntInclusive(1, lastNameCount)
-    const firstName = await this.firstNameRepository.findOne({
-      where: { id: firstNameRandomId },
+    const firstNames = await this.firstNameRepository.find()
+    const lastNames = await this.lastNameRepository.find()
+    const firstNameIds = firstNames.map((item) => item.id)
+    const lastNameIds = lastNames.map((item) => item.id)
+
+    const firstNameRandomIdIndex = getRandomIntInclusive(1, firstNameCount)
+    const lastNameRandomIdIndex = getRandomIntInclusive(1, lastNameCount)
+    const firstNameId = firstNameIds[firstNameRandomIdIndex]
+    const lastNameId = lastNameIds[lastNameRandomIdIndex]
+    const { last_name } = await this.lastNameRepository.findOne({
+      where: { id: lastNameId },
     })
-    const lastName = await this.lastNameRepository.findOne({
-      where: { id: lastNameRandomId },
+    lastName = last_name
+    const { first_name } = await this.firstNameRepository.findOne({
+      where: { id: firstNameId },
     })
+
+    firstName = first_name
     return {
       code: 200,
       message: 'created name successfully!',
-      data: { name: `${lastName.last_name}${firstName.first_name}` },
+      data: { name: `${lastName}${firstName}` },
     }
   }
 

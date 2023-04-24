@@ -12,11 +12,13 @@ export class ImageDownloadService {
 
   async findAll(count: number) {
     const { data } = await firstValueFrom(
-      this.httpService.get<any>('http://45.92.158.200:8084/image/1').pipe(
-        catchError((error: AxiosError) => {
-          throw 'An error happened!'
-        }),
-      ),
+      this.httpService
+        .get<any>('http://45.92.158.200:8084/displayImage/1')
+        .pipe(
+          catchError((error: AxiosError) => {
+            throw 'An error happened!'
+          }),
+        ),
     )
     return data
   }
