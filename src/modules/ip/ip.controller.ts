@@ -13,7 +13,8 @@ import {
 import { IpService } from './ip.service'
 import { CreateIpDto } from './dto/create-ip.dto'
 import { UpdateIpDto } from './dto/update-ip.dto'
-import { TokenGuardTsGuard } from 'src/guard/token.guard.ts/token.guard.ts.guard'
+import { Roles } from 'src/decorator/roles.decorator'
+import { Role } from 'src/enums/role.enum'
 
 @Controller('ip')
 export class IpController {
@@ -24,8 +25,8 @@ export class IpController {
   //   return this.ipService.create(createIpDto)
   // }
 
-  @UseGuards(TokenGuardTsGuard)
   @HttpCode(HttpStatus.OK)
+  @Roles(Role.Admin)
   @Post('change')
   change(@Body() updateIpDto: UpdateIpDto) {
     return this.ipService.change(updateIpDto.countryCode, updateIpDto.proxyId)

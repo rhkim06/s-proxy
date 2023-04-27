@@ -9,10 +9,9 @@ import {
   UseGuards,
 } from '@nestjs/common'
 import { SmsManService } from './sms-man.service'
-import { CreateSmsManDto } from './dto/create-sms-man.dto'
-import { UpdateSmsManDto } from './dto/update-sms-man.dto'
-import { TokenGuardTsGuard } from 'src/guard/token.guard.ts/token.guard.ts.guard'
 import { SmsManPriceService } from 'src/modules/sms-man-price/sms-man-price.service'
+import { Roles } from 'src/decorator/roles.decorator'
+import { Role } from 'src/enums/role.enum'
 
 @Controller('sms-a')
 export class SmsManController {
@@ -20,26 +19,22 @@ export class SmsManController {
     private readonly smsManService: SmsManService,
     private readonly smsManPriceService: SmsManPriceService,
   ) {}
-
-  @UseGuards(TokenGuardTsGuard)
+  @Roles(Role.Admin)
   @Post()
   async create(@Body() createSmsManDto: any) {
     return await this.smsManService.create(createSmsManDto)
   }
-
-  @UseGuards(TokenGuardTsGuard)
+  @Roles(Role.Admin)
   @Post('phone-number')
   async getPhoneNumber(@Body() payload: any) {
     return await this.smsManService.getPhoneNumber(payload)
   }
-
-  @UseGuards(TokenGuardTsGuard)
+  @Roles(Role.Admin)
   @Post('code')
   async getSmsCode(@Body() payload: any) {
     return await this.smsManService.getSmsCode(payload)
   }
-
-  @UseGuards(TokenGuardTsGuard)
+  @Roles(Role.Admin)
   @Get(':id')
   async findAllSmsA(@Param('id') id: number) {
     return await this.smsManService.findAllSmsA(id)

@@ -9,22 +9,20 @@ import {
   Request,
   UseGuards,
 } from '@nestjs/common'
+import { Roles } from 'src/decorator/roles.decorator'
+import { Role } from 'src/enums/role.enum'
 import { MailServerService } from './mail-server.service'
-import { CreateMailServerDto } from './dto/create-mail-server.dto'
-import { UpdateMailServerDto } from './dto/update-mail-server.dto'
-import { TokenGuardTsGuard } from 'src/guard/token.guard.ts/token.guard.ts.guard'
 
 @Controller('mail-server')
 export class MailServiceController {
   constructor(private readonly mailServiceService: MailServerService) {}
-
-  @UseGuards(TokenGuardTsGuard)
+  @Roles(Role.Admin)
   @Post('add')
   async create(@Body() payload: any) {
     return this.mailServiceService.create(payload)
   }
 
-  @UseGuards(TokenGuardTsGuard)
+  @Roles(Role.Admin)
   @Post()
   async findAllOutLook(@Body() payload: any) {
     try {
@@ -34,7 +32,7 @@ export class MailServiceController {
       console.log(error)
     }
   }
-  @UseGuards(TokenGuardTsGuard)
+  @Roles(Role.Admin)
   @Get(':id')
   async findAll(@Param('id') id: number) {
     return await this.mailServiceService.findAll(+id)

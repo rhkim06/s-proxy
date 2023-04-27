@@ -11,7 +11,7 @@ import { Request } from 'express'
 import { jwtConstants } from 'src/modules/auth/constants'
 
 @Injectable()
-export class TokenGuardTsGuard implements CanActivate {
+export class TokenGuard implements CanActivate {
   constructor(private jwtService: JwtService) {}
   private extractTokenFromHeader(request: Request): string | undefined {
     const [type, token] = request.headers.authorization?.split(' ') ?? []
@@ -26,7 +26,7 @@ export class TokenGuardTsGuard implements CanActivate {
     }
     try {
       const payload = await this.jwtService.verifyAsync(token, {
-        secret: 'abcabc',
+        secret: jwtConstants.secret,
       })
       // 💡 We're assigning the payload to the request object here
       // so that we can access it in our route handlers

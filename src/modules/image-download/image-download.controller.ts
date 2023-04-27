@@ -9,8 +9,9 @@ import {
   UseGuards,
   Query,
 } from '@nestjs/common'
+import { Roles } from 'src/decorator/roles.decorator'
+import { Role } from 'src/enums/role.enum'
 import { ImageDownloadService } from './image-download.service'
-import { TokenGuardTsGuard } from 'src/guard/token.guard.ts/token.guard.ts.guard'
 
 @Controller('image-download')
 export class ImageDownloadController {
@@ -20,7 +21,7 @@ export class ImageDownloadController {
   create(@Body() createImageDownloadDto) {
     return this.imageDownloadService.create(createImageDownloadDto)
   }
-  @UseGuards(TokenGuardTsGuard)
+  @Roles(Role.Admin)
   @Get()
   async findAll(@Query('count') count: number) {
     const allPromises = []

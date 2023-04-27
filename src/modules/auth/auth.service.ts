@@ -1,6 +1,7 @@
 import { HttpStatus, Injectable, UnauthorizedException } from '@nestjs/common'
 import { JwtService } from '@nestjs/jwt'
 import { UsersService } from '../users/users.service'
+import { jwtConstants } from './constants'
 
 @Injectable()
 export class AuthService {
@@ -13,18 +14,19 @@ export class AuthService {
     if (user?.password !== pass) {
       throw new UnauthorizedException()
     } else {
-      const payload = { id: user.id }
-      const access_token = await this.jwtService.signAsync(payload, {
-        secret: 'abcabc',
-      })
+      const roles = await this.usersService.findRolesByUserId(user.id)
+
+      const access_token = await this.jwtService.signAsync(
+        { roles, id: user.id },
+        {
+          secret: jwtConstants.secret,
+        },
+      )
       const token = `Bearer ${access_token}`
       res.setHeader('authorization', token)
       res.send({
         codeStatus: HttpStatus.OK,
         message: '登陆成功',
-        data: {
-          id: user.id,
-        },
       })
     }
   }

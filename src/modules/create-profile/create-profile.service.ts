@@ -50,7 +50,7 @@ export class CreateProfileService {
     }
   }
 
-  addLastName(name: string) {
+  addFirstName(name: string) {
     const names = name.split(' ')
     names.forEach((item) => {
       console.log(item)

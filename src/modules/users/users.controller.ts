@@ -1,17 +1,7 @@
-import {
-  Controller,
-  Get,
-  Post,
-  Body,
-  Patch,
-  Param,
-  Delete,
-  UseGuards,
-} from '@nestjs/common'
+import { Controller, Get, Post, Body, Param } from '@nestjs/common'
+import { Roles } from 'src/decorator/roles.decorator'
+import { Role } from 'src/enums/role.enum'
 import { UsersService } from './users.service'
-import { CreateUserDto } from './dto/create-user.dto'
-import { UpdateUserDto } from './dto/update-user.dto'
-import { TokenGuardTsGuard } from 'src/guard/token.guard.ts/token.guard.ts.guard'
 
 @Controller('users')
 export class UsersController {
@@ -26,20 +16,21 @@ export class UsersController {
   // findAll() {
   //   return this.usersService.findAll()
   // }
-
-  @UseGuards(TokenGuardTsGuard)
   @Get(':id')
   findOne(@Param('id') id: string) {
     return this.usersService.findOne(+id)
   }
 
-  @UseGuards(TokenGuardTsGuard)
+  @Get('roles/:id')
+  findRolesByUserId(@Param('id') id: string) {
+    return this.usersService.findRolesByUserId(+id)
+  }
+  @Roles(Role.Admin)
   @Get('dynamic-ip/:id')
   findOneDynamicIp(@Param('id') id: string) {
     return this.usersService.findOneDynamicIp(+id)
   }
-
-  @UseGuards(TokenGuardTsGuard)
+  @Roles(Role.Admin)
   @Post('profile')
   findOneByName(@Body() user: Record<string, any>) {
     return this.usersService.findOneByName(user.name)

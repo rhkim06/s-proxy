@@ -9,9 +9,6 @@ import {
   Query,
 } from '@nestjs/common'
 import { SmsManPriceService } from './sms-man-price.service'
-import { CreateSmsManPriceDto } from './dto/create-sms-man-price.dto'
-import { UpdateSmsManPriceDto } from './dto/update-sms-man-price.dto'
-import { platform } from 'os'
 
 @Controller('sms-a-price')
 export class SmsManPriceController {

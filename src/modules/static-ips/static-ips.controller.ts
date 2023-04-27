@@ -9,10 +9,9 @@ import {
   Query,
   UseGuards,
 } from '@nestjs/common'
+import { Roles } from 'src/decorator/roles.decorator'
+import { Role } from 'src/enums/role.enum'
 import { StaticIpsService } from './static-ips.service'
-import { CreateStaticIpDto } from './dto/create-static-ip.dto'
-import { UpdateStaticIpDto } from './dto/update-static-ip.dto'
-import { TokenGuardTsGuard } from 'src/guard/token.guard.ts/token.guard.ts.guard'
 
 @Controller('static-ips')
 export class StaticIpsController {
@@ -22,18 +21,17 @@ export class StaticIpsController {
   // create(@Body() createStaticIpDto: CreateStaticIpDto) {
   //   return this.staticIpsService.init()
   // }
-
+  @Roles(Role.Admin)
   @Get('init')
   findAll() {
     // return this.staticIpsService.init()
   }
-  @UseGuards(TokenGuardTsGuard)
+  @Roles(Role.Admin)
   @Get(':id')
   async findByUserId(@Param('id') id: string, @Query('offset') offset: string) {
     return await this.staticIpsService.findByUserId(+id, +offset)
   }
-
-  @UseGuards(TokenGuardTsGuard)
+  @Roles(Role.Admin)
   @Post('buy')
   async buyStaticIp(@Body() data: any) {
     return await this.staticIpsService.buyStaticIp(data)

@@ -18,8 +18,13 @@ export class UsersService {
     return res
   }
 
-  findAll() {
-    return `This action returns all users`
+  async findRolesByUserId(id: number) {
+    const roles = await this.usersRepository.findOne({
+      relations: { roles: true },
+      where: { id },
+    })
+    const rolesList = roles.roles.map((item) => item.name)
+    return rolesList
   }
 
   async findOneByName(name: string) {
@@ -41,11 +46,11 @@ export class UsersService {
     })
     return user
   }
-  update(id: number, updateUserDto: UpdateUserDto) {
-    return `This action updates a #${id} user`
-  }
+  // update(id: number, updateUserDto: UpdateUserDto) {
+  //   return `This action updates a #${id} user`
+  // }
 
-  remove(id: number) {
-    return `This action removes a #${id} user`
-  }
+  // remove(id: number) {
+  //   return `This action removes a #${id} user`
+  // }
 }

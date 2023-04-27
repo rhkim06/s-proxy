@@ -4,7 +4,7 @@ import { User } from './modules/users/entities/user.entity'
 import { UsersModule } from './modules/users/users.module'
 import { AuthModule } from './modules/auth/auth.module'
 import { APP_GUARD } from '@nestjs/core'
-import { TokenGuardTsGuard } from './guard/token.guard.ts/token.guard.ts.guard'
+import { AuthGuard } from './guard/auth.guard'
 import { JwtModule } from '@nestjs/jwt'
 import { IpModule } from './modules/ip/ip.module'
 import { StaticIpsModule } from './modules/static-ips/static-ips.module'
@@ -26,6 +26,9 @@ import { ImageDownloadModule } from './modules/image-download/image-download.mod
 import { CreateProfileModule } from './modules/create-profile/create-profile.module'
 import { FirstName } from './modules/create-profile/entities/first-name.entity'
 import { LastName } from './modules/create-profile/entities/last-name.entity'
+import { RolesModule } from './modules/roles/roles.module'
+import { Roles } from './modules/roles/entities/role.entity'
+import { RolesGuard } from './guard/roles.guard'
 const format = winston.format
 const path = require('path')
 @Module({
@@ -45,6 +48,7 @@ const path = require('path')
         MailServer,
         FirstName,
         LastName,
+        Roles,
       ],
       synchronize: true,
     }),
@@ -58,6 +62,7 @@ const path = require('path')
     IpCheckModule,
     ImageDownloadModule,
     CreateProfileModule,
+    RolesModule,
   ],
   controllers: [],
   providers: [Logger],

@@ -8,7 +8,8 @@ import {
   Delete,
   UseGuards,
 } from '@nestjs/common'
-import { TokenGuardTsGuard } from 'src/guard/token.guard.ts/token.guard.ts.guard'
+import { Roles } from 'src/decorator/roles.decorator'
+import { Role } from 'src/enums/role.enum'
 import { CreateProfileService } from './create-profile.service'
 import { CreateCreateProfileDto } from './dto/create-create-profile.dto'
 
@@ -18,16 +19,16 @@ export class CreateProfileController {
 
   @Post()
   create(@Body() createCreateProfileDto: CreateCreateProfileDto) {
-    return this.createProfileService.create(createCreateProfileDto)
+    // return this.createProfileService.create(createCreateProfileDto)
   }
-  @UseGuards(TokenGuardTsGuard)
+  @Roles(Role.Admin)
   @Get('name')
   findOneProfile() {
     return this.createProfileService.findOneProfile()
   }
 
-  @Post('add-last-name')
-  addLastName(@Body() payload: any) {
-    return this.createProfileService.addLastName(payload.name)
-  }
+  // @Post('add-first-name')
+  // addFirstName(@Body() payload: any) {
+  //   return this.createProfileService.addFirstName(payload.name)
+  // }
 }
