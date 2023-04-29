@@ -122,8 +122,6 @@ export const useGetMail = (payload?: any) => {
 
     imap.once('error', function (err) {
       resolve('用户不存在，或密码错误！')
-
-      console.log(err, 'err')
     })
 
     imap.once('end', function () {

@@ -22,7 +22,7 @@ import { MailServer } from './modules/mail-server/entities/mail-server.entity'
 import { IpCheckService } from './modules/ip-check/ip-check.service'
 import { IpCheckController } from './modules/ip-check/ip-check.controller'
 import { IpCheckModule } from './modules/ip-check/ip-check.module'
-import { ImageDownloadModule } from './modules/image-download/image-download.module'
+import { ImageServerloadModule } from './modules/image-server/image-server.module'
 import { CreateProfileModule } from './modules/create-profile/create-profile.module'
 import { FirstName } from './modules/create-profile/entities/first-name.entity'
 import { LastName } from './modules/create-profile/entities/last-name.entity'
@@ -60,7 +60,7 @@ const path = require('path')
     SmsManPriceModule,
     MailServerModule,
     IpCheckModule,
-    ImageDownloadModule,
+    ImageServerloadModule,
     CreateProfileModule,
     RolesModule,
   ],

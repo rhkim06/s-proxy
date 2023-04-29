@@ -53,8 +53,6 @@ export class CreateProfileService {
   addFirstName(name: string) {
     const names = name.split(' ')
     names.forEach((item) => {
-      console.log(item)
-
       const name = this.firstNameRepository.create({ first_name: item })
       this.firstNameRepository.save(name)
     })
