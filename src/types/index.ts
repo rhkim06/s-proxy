@@ -12,3 +12,5 @@ export type ImageListRecord = {
   projectType: number
   display: number
 }
+
+export type ImageUploadPayload = {}

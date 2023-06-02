@@ -6,6 +6,7 @@ import {
   getDeleteImage,
   getImageDownLoadUrl,
   getImageList,
+  uploadImage,
 } from 'src/service/image-server'
 
 @Injectable()
@@ -24,5 +25,9 @@ export class ImageServerService {
 
   async deleteImage(id: number, imageUrl: string) {
     return await getDeleteImage(id, imageUrl)
+  }
+
+  async uploadImage(payload: any) {
+    return await uploadImage(payload)
   }
 }
